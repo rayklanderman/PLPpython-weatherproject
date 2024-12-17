@@ -16,6 +16,10 @@ def get_weather(request):
         city = request.POST.get('city')
         api_key = os.getenv('OPENWEATHER_API_KEY')
         
+        if not api_key:
+            print("Warning: OPENWEATHER_API_KEY not found in environment variables")
+            return JsonResponse({'success': False, 'error': 'API key not configured'})
+        
         # OpenWeather API endpoint
         url = f'http://api.openweathermap.org/data/2.5/weather?q={city}&appid={api_key}&units=metric'
         
