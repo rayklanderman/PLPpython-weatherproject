@@ -22,6 +22,7 @@ def get_weather(request):
             return JsonResponse({'success': False, 'error': 'API key not configured'})
             
         print(f"Debug: Using city: {city}")  # Debug log
+        print(f"Debug: API key found: {'Yes' if api_key else 'No'}")  # Debug log
         
         # OpenWeather API endpoint
         url = f'http://api.openweathermap.org/data/2.5/weather?q={city}&appid={api_key}&units=metric'
