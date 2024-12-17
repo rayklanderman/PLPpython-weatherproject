@@ -10,7 +10,8 @@ SECRET_KEY = os.getenv('SECRET_KEY', 'django-insecure-your-secret-key-here')
 
 DEBUG = os.getenv('DEBUG', 'False') == 'True'
 
-ALLOWED_HOSTS = ['*']  # We'll let Railway handle host restrictions
+ALLOWED_HOSTS = ['web-production-6b89f.up.railway.app', 'localhost', '127.0.0.1']
+
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -92,7 +93,7 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Security settings
-CSRF_TRUSTED_ORIGINS = ['https://*.railway.app']
+CSRF_TRUSTED_ORIGINS = ['https://web-production-6b89f.up.railway.app']
 SECURE_SSL_REDIRECT = not DEBUG
 SESSION_COOKIE_SECURE = not DEBUG
 CSRF_COOKIE_SECURE = not DEBUG
