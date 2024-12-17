@@ -14,11 +14,14 @@ def index(request):
 def get_weather(request):
     if request.method == 'POST':
         city = request.POST.get('city')
-        api_key = os.getenv('OPENWEATHER_API_KEY')
+        # Try both possible environment variable names
+        api_key = os.getenv('OPENWEATHER_API_KEY') or os.getenv('OPENWEATHERMAP_API_KEY')
         
         if not api_key:
-            print("Warning: OPENWEATHER_API_KEY not found in environment variables")
+            print("Warning: Neither OPENWEATHER_API_KEY nor OPENWEATHERMAP_API_KEY found in environment variables")
             return JsonResponse({'success': False, 'error': 'API key not configured'})
+            
+        print(f"Debug: Using city: {city}")  # Debug log
         
         # OpenWeather API endpoint
         url = f'http://api.openweathermap.org/data/2.5/weather?q={city}&appid={api_key}&units=metric'
