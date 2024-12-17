@@ -1,2 +1,3 @@
 #!/bin/bash
-python manage.py collectstatic --noinput
+chmod +x .railway/build.sh
+python manage.py collectstatic --noinput --clear
